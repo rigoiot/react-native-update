@@ -44,6 +44,7 @@ class Update {
         options.wwwPath = documentFilePath+'www',
         options.jsbundleZipPath = documentFilePath+'www.zip',
         options.localVersionPath = documentFilePath+'version.json',
+        options.fetchServerVersion = options.fetchServerVersion || this.GET
         this.options = options;
     }
     GET(url, success, error) {
@@ -164,7 +165,7 @@ class Update {
     }
     getServerVersion(appStoreVersion) {
         console.log("getServerVersion", this.options.versionUrl);
-        this.GET(this.options.versionUrl, this.getServerVersionSuccess.bind(this, appStoreVersion), this.getServerVersionError.bind(this));
+        this.fetchServerVersion(this.options.versionUrl, this.getServerVersionSuccess.bind(this, appStoreVersion), this.getServerVersionError.bind(this));
     }
     getServerVersionSuccess(appStoreVersion, remote) {
         console.log("getServerVersionSuccess", remote);
